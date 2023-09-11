@@ -10,8 +10,10 @@ const intentTypes = [
     GatewayIntentBits.Guilds, 
     GatewayIntentBits.GuildMembers, 
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.GuildMessageReactions
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.MessageContent
 ];
+
 const client = new Client({ intents: intentTypes });
 const CLIENT_ID = process.env.CLIENT_ID;
 const token = process.env.TOKEN;
@@ -25,8 +27,6 @@ client.login(token);
 //////////command file management//////////
 client.commands = new Collection();
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('js'));
 
@@ -43,10 +43,6 @@ for(const file of commandFiles) {
 
 client.on('interactionCreate', async interaction => {
     if(!interaction.isChatInputCommand()) return;
-
-    // if(interaction.commandName === 'ping') {
-    //     await interaction.reply('Pong!');
-    // }
 
     const command = interaction.client.commands.get(interaction.commandName);
     if(!command) {
@@ -68,8 +64,29 @@ client.on('interactionCreate', async interaction => {
 
 //////////message reaction rules (can probably move this into a neater format with another file)//////////
 client.on('messageCreate', async message => {
-    console.log("content:", message);
-    if(message.content.includes("pants")) {
-        message.reply("PANTS");
+    if(message.content.includes('tama') || message.author.id === process.env.tamaID) {
+        message.react('👮');
+    }
+    if(message.content.toLowerCase().includes('kippy') || message.author.id === process.env.kippyID) {
+        message.react('🐳');
+        message.react('🐋');
+    }
+    if(message.author.id === process.env.samID) {
+        message.react('🥜');
+    }
+    if(message.author.id === process.env.remyID) {
+        message.react('💩');
+    }
+    if(message.author.id === process.env.jessID) {
+        message.react('<:blobimfine:1037218991300677713>');
+    }
+    if(message.author.id === process.env.ktID) {
+        message.react('<:ratblush:893330880335065169>');
+    }
+    if(message.author.id === process.env.loonaID) {
+        message.react('<:please:1026653367394635966>');
+    }
+    if(message.author.id === process.env.usaaID) {
+        message.react('<:blobnervouspleading:1036752418907639828>');
     }
 })
