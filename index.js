@@ -1,9 +1,7 @@
 //////////basic discord.js etc. dependencies and bot setup//////////
-const { REST, Routes } = require('discord.js');
 const  { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
-const { fileURLToPath } = require('node:url');
 require('dotenv').config();
 
 const intentTypes = [
@@ -15,7 +13,7 @@ const intentTypes = [
 ];
 
 const client = new Client({ intents: intentTypes });
-const CLIENT_ID = process.env.CLIENT_ID;
+const client_id = process.env.CLIENT_ID;
 const token = process.env.TOKEN;
 
 client.on('ready', () => {
@@ -35,7 +33,7 @@ for(const file of commandFiles) {
     const command = require(filePath);
     if('data' in command && 'execute' in command) {
         client.commands.set(command.data.name, command);
-        console.log("set", command.data.name);
+        console.log(`set command '${command.data.name}'`);
     } else {
         console.log(`could not add ${command.data.name}`, console.error);
     }
