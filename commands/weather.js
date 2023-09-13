@@ -19,8 +19,8 @@ module.exports = {
             if(err) {
                 console.log('error retrieving weather:', err.stack);
             } else {
-                if(!data) {
-                    console.log(`No weather data for ${location}, try another location!`)
+                if(!data || data.length == 0) {
+                    interaction.reply({ content: `No weather data for ${location}, try another location!` });
                 } else {
                     console.log("data:", data);
                     function toF(temp) {
