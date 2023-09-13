@@ -1,10 +1,10 @@
-const { EmbedBuilder, SlashCommandBuilder, EmbedAssertions } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 const cowboyIcon = process.env.ICON;
 // will need to update this and any similar references in the event of command subfolders like music commands
 const commandFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('js'));
-
+// for tomorrow: add optional parameter to look up help only for a specific command, add another data attribute to each that explains it more in-depth for the single-command version
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
@@ -23,6 +23,6 @@ module.exports = {
             helpEmbed.addFields({ name: command.data.name, value: command.data.description })
         }   
 
-        interaction.reply({ embeds: [helpEmbed] });
+        await interaction.reply({ embeds: [helpEmbed] });
     }
 }

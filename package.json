@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "openweather-apis": "^4.5.0",
+    "weather-js": "^2.0.0"
   }
 }
