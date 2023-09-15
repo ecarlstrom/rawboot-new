@@ -20,8 +20,8 @@ module.exports = {
             .setTitle(`🤠 A POLL FOR YOU 🤠`)
             .setDescription(`**${input}**`)
             .setThumbnail(yesNoImage)
-            .setFooter({ text: `Asked by ${interaction.user.username}` })
-        
+            .setFooter({ text: `Asked by ${interaction.member.nickname}` })
+
         var sent = await interaction.reply({ embeds: [ynPollEmbed], fetchReply: true });
         await sent.react('✅');
         await sent.react('⛔');

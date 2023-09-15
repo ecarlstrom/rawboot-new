@@ -13,7 +13,7 @@ module.exports = {
         const helpEmbed = new EmbedBuilder()
             .setColor(0x0099FF)
             .setTitle(`🤠 List of Commands 🤠`)
-            .setDescription(`HELLO, ${interaction.user}, I AM HERE TO HELP`)
+            .setDescription(`HELLO, ${interaction.member.nickname}, I AM HERE TO HELP`)
             .setThumbnail(cowboyIcon)
             .setFooter({ text: 'All commands are prefixed with a slash!', iconURL: cowboyIcon })
         
