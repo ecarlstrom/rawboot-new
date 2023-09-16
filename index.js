@@ -111,6 +111,10 @@ player.events.on('playerStart', (queue, track) => {
     queue.metadata.channel.send({ embeds: [songEmbed] });
 });
 
-player.events.on('volumeChange', (queue, volume) => {
-    queue.metadata.channel.send({ text: `Volume set to ${volume}%.`});
-})
+// player.events.on('volumeChange', (queue, volume) => {
+//     queue.metadata.channel.send({ text: `Volume set to ${volume}%.`});
+// })
+
+// player.events.on('playerSkip', (queue, track) => {
+//     queue.metadata.channel.send({ text: `${track.title} by ${track.author} has been skipped by ${queue.metadata.member.nickname}.`})
+// })

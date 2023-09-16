@@ -10,13 +10,14 @@ module.exports = {
         const { member, guild } = interaction;
         const queue = useQueue(guild.id);
         
-        if(queue.tracks.data.length < 1) {
+        if(!queue || queue.tracks.data.length < 1) {
             return interaction.reply('No songs currently queued.');
         }
 
         const queueEmbed = new EmbedBuilder()
         .setColor(0x0006b1)
         .setTitle(`🤠 Current Queue 🤠`)
+        .addFields({ name: 'Now playing:', value: `${queue.currentTrack.title} by ${queue.currentTrack.author}`})
         .setThumbnail(cowboyIcon)
         .setFooter({ text: `Footer placeholder` })
 
