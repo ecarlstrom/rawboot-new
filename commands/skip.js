@@ -11,12 +11,14 @@ module.exports = {
         const channel = interaction.member.voice.channel;
         const queue = useQueue(guild.id);
         const guildQueue = new GuildQueuePlayerNode(queue);
-        var currentData = queue.currentTrack;
 
         if (!channel) {
             return interaction.reply('HEY TOP! STILL! JOIN A VOICE CHANNEL!');
+        } else if(!queue) {
+            return interaction.reply('No song currently playing.')
         }
 
+        var currentData = queue.currentTrack;
         await interaction.deferReply();
 
         try {
