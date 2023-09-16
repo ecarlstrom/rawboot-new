@@ -24,7 +24,8 @@ module.exports = {
                     metadata: interaction
                 }
             });
-            return interaction.followUp(`**${track.title} by ${track.author}** added to queue!`);
+            // console.log("queue is", player.getQueue(interaction.guildId));
+            return interaction.followUp(`**${track.title}** by ${track.author} added to queue!`);
         } catch (e) {
             return interaction.followUp(`UH OH! ${e.stack}`);
         }

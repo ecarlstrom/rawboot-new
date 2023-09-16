@@ -16,7 +16,7 @@ const intentTypes = [
 ];
 
 const client = new Client({ intents: intentTypes });
-const client_id = process.env.CLIENT_ID;
+const supercatblush = process.env.SUPERCATBLUSH;
 const token = process.env.TOKEN;
 
 client.on('ready', () => {
@@ -93,18 +93,24 @@ client.on('messageCreate', async message => {
 })
 
 //////////music player instance//////////
-const player = new Player(client);
+const player = new Player(client, { quality: 'highestaudio '});
 player.extractors.loadDefault((ext) => ext);
 
 player.events.on('playerStart', (queue, track) => {
-    // console.log("track info:", track.raw);
-    // console.log("queue:", queue);
-    console.log("test:", track);
+    console.log("track info:", player);
+    // console.log("queue:", queue.metadata);
+    // console.log("test:", track);
     const songEmbed = new EmbedBuilder()
         .setColor(0x0006b1)
         .setTitle(`<a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684>`)
         .setDescription(`**Now playing: ${track.title} by ${track.author}**`)
+        // .addFields({ name: 'Current Volume', text: player.metadata.volume, inline: true })
+        .setImage(supercatblush)
         .setThumbnail(`${track.thumbnail}`)
-        .setFooter({ text: `Added by placeholder` })
+        .setFooter({ text: `Added by ${queue.metadata.member.nickname}` })
     queue.metadata.channel.send({ embeds: [songEmbed] });
 });
+
+player.events.on('volumeChange', (queue, volume) => {
+    queue.metadata.channel.send({ text: `Volume set to ${volume}%.`});
+})
