@@ -1,3 +1,4 @@
+const { optionalNumber } = require('assert-plus');
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const weather = require('weather-js');
 

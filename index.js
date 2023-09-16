@@ -1,5 +1,7 @@
 //////////basic discord.js etc. dependencies and bot setup//////////
 const  { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Player } = require('discord-player');
+const { Discord, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 require('dotenv').config();
@@ -9,6 +11,7 @@ const intentTypes = [
     GatewayIntentBits.GuildMembers, 
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.MessageContent
 ];
 
@@ -88,3 +91,20 @@ client.on('messageCreate', async message => {
         message.react('<:blobnervouspleading:1036752418907639828>');
     }
 })
+
+//////////music player instance//////////
+const player = new Player(client);
+player.extractors.loadDefault((ext) => ext);
+
+player.events.on('playerStart', (queue, track) => {
+    // console.log("track info:", track.raw);
+    // console.log("queue:", queue);
+    console.log("test:", track);
+    const songEmbed = new EmbedBuilder()
+        .setColor(0x0006b1)
+        .setTitle(`<a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684>`)
+        .setDescription(`**Now playing: ${track.title} by ${track.author}**`)
+        .setThumbnail(`${track.thumbnail}`)
+        .setFooter({ text: `Added by placeholder` })
+    queue.metadata.channel.send({ embeds: [songEmbed] });
+});
