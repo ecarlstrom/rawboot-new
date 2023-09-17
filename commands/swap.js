@@ -40,11 +40,11 @@ module.exports = {
             if(queue.tracks.data[firstTrackPosition] && queue.tracks.data[secondTrackPosition]) {
                 guildQueue.swap(queue.tracks.data[firstTrackPosition], queue.tracks.data[secondTrackPosition]);
                 const queueEmbed = new EmbedBuilder()
-                .setColor(0x0006b1)
-                .setTitle(`🤠 Current Queue 🤠`)
-                .addFields({ name: 'Now playing:', value: `${queue.currentTrack.title} by ${queue.currentTrack.author}`})
-                .setThumbnail(cowboyIcon)
-                .setFooter({ text: `Footer placeholder` })
+                    .setColor(0x0006b1)
+                    .setTitle(`🤠 Current Queue 🤠`)
+                    .addFields({ name: 'Now playing:', value: `${queue.currentTrack.title} by ${queue.currentTrack.author}`})
+                    .setThumbnail(cowboyIcon)
+                    .setFooter({ text: `Footer placeholder` })
                 let trackData = queue.tracks.data;
                 for(let i = 0; i < trackData.length; i++) {
                     queueEmbed.addFields({ name: `🤠 Song #${i + 1}`, value: `${trackData[i].title} by ${trackData[i].author} (${trackData[i].duration})`})
