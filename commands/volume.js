@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { GuildQueuePlayerNode, useMainPlayer, useQueue } = require('discord-player');
+const { GuildQueuePlayerNode, useQueue } = require('discord-player');
 const { is } = require('css-select');
 
 module.exports = {

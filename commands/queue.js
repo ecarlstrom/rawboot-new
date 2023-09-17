@@ -1,7 +1,7 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { useQueue } = require('discord-player');
 const cowboyIcon = process.env.ICON;
-// tomorrow: look into equalizer command for play as well, swap command?
+// tomorrow: look into equalizer command for play as well, swap command? also interaction buttons on some of the embeds for things like volume, repeat, etc.
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('queue')

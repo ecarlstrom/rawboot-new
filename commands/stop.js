@@ -12,7 +12,7 @@ module.exports = {
         const guildQueue = new GuildQueuePlayerNode(queue);
 
         // update this for after first stop
-        if(!queue || !GuildQueue) {
+        if(!queue || !guildQueue) {
             return interaction.reply('No song currently playing.')
         }
 
