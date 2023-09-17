@@ -6,7 +6,6 @@ module.exports = {
     .setName('skip')
     .setDescription('Skips the currently playing song'),
     async execute(interaction) {
-        const player = useMainPlayer();
         const { guild } = interaction;
         const channel = interaction.member.voice.channel;
         const queue = useQueue(guild.id);

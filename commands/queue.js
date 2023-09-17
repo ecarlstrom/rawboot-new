@@ -23,9 +23,9 @@ module.exports = {
 
         let trackData = queue.tracks.data;
         for(let i = 0; i < trackData.length; i++) {
-            queueEmbed.addFields({ name: `Song #${i + 1}`, value: `${trackData[i].title} by ${trackData[i].author} (${trackData[i].duration})`})
+            queueEmbed.addFields({ name: `🤠 Song #${i + 1}`, value: `${trackData[i].title} by ${trackData[i].author} (${trackData[i].duration})`})
         }
-        console.log('queue:', queue.tracks.data);
+
         await interaction.reply({ embeds: [queueEmbed] });
     }
 }
