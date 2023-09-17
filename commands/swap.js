@@ -1,5 +1,7 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { GuildQueuePlayerNode, useQueue } = require('discord-player');
+const cowboyIcon = process.env.ICON;
+// general note: can make a utils folder or something so things like queueEmbed code or icons can exist only in one place
 // for things like this will probably need a vote or similar system to prevent abuse, simple version for now
 module.exports = {
     data: new SlashCommandBuilder()
@@ -35,8 +37,23 @@ module.exports = {
         await interaction.deferReply();
 
         try {
-            guildQueue.swap(queue.tracks.data[firstTrackPosition], queue.tracks.data[secondTrackPosition]);
-            return interaction.followUp('Tracks swapped.');
+            if(queue.tracks.data[firstTrackPosition] && queue.tracks.data[secondTrackPosition]) {
+                guildQueue.swap(queue.tracks.data[firstTrackPosition], queue.tracks.data[secondTrackPosition]);
+                const queueEmbed = new EmbedBuilder()
+                .setColor(0x0006b1)
+                .setTitle(`🤠 Current Queue 🤠`)
+                .addFields({ name: 'Now playing:', value: `${queue.currentTrack.title} by ${queue.currentTrack.author}`})
+                .setThumbnail(cowboyIcon)
+                .setFooter({ text: `Footer placeholder` })
+                let trackData = queue.tracks.data;
+                for(let i = 0; i < trackData.length; i++) {
+                    queueEmbed.addFields({ name: `🤠 Song #${i + 1}`, value: `${trackData[i].title} by ${trackData[i].author} (${trackData[i].duration})`})
+                }
+                interaction.editReply('Tracks swapped! New queue:\n');
+                return interaction.followUp({ embeds: [queueEmbed] });
+            } else {
+                return interaction.followUp('Please provide two valid queue numbers.')
+            }
         } catch(err) {
             console.log(err.stack);
             return interaction.followUp('Encountered an error while swapping tracks.');
