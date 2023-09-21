@@ -11,14 +11,13 @@ module.exports = {
         const queue = useQueue(guild.id);
         const guildQueue = new GuildQueuePlayerNode(queue);
 
-        if(!queue || !guildQueue) {
-            return interaction.reply('No song currently playing.')
-        }
-
-
         if (!channel) {
             return interaction.reply('HEY TOP! STILL! JOIN A VOICE CHANNEL!');
         } 
+        
+        if(!queue || !guildQueue) {
+            return interaction.reply('No song currently playing.')
+        }
 
         await interaction.deferReply();
 

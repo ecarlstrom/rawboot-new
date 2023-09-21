@@ -1,6 +1,6 @@
 //////////basic discord.js etc. dependencies and bot setup//////////
 const  { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { Player } = require('discord-player');
+const { GuildQueuePlayerNode, Player, useMainPlayer, useQueue } = require('discord-player');
 const { Discord, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -97,9 +97,6 @@ const player = new Player(client, { quality: 'highestaudio '});
 player.extractors.loadDefault((ext) => ext);
 
 player.events.on('playerStart', (queue, track) => {
-    console.log("track info:", player);
-    // console.log("queue:", queue.metadata);
-    // console.log("test:", track);
     const songEmbed = new EmbedBuilder()
         .setColor(0x0006b1)
         .setTitle(`<a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684><a:CatJam:1152408665018609684>`)

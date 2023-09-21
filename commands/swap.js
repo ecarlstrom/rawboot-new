@@ -16,10 +16,15 @@ module.exports = {
             .setDescription('Number of second track to swap')
             .setRequired(true)),    
     async execute(interaction) {
+        const channel = interaction.member.voice.channel;
         const { guild } = interaction;
         const queue = useQueue(guild.id);
         const guildQueue = new GuildQueuePlayerNode(queue);
 
+        if (!channel) {
+            return interaction.reply('HEY TOP! STILL! JOIN A VOICE CHANNEL!');
+        } 
+        
         if(!queue || queue.tracks.data.length < 1) {
             return interaction.reply('No songs currently queued.');
         }
