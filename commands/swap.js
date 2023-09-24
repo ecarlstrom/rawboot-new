@@ -24,7 +24,7 @@ module.exports = {
         if (!channel) {
             return interaction.reply('HEY TOP! STILL! JOIN A VOICE CHANNEL!');
         } 
-        
+
         if(!queue || queue.tracks.data.length < 1) {
             return interaction.reply('No songs currently queued.');
         }
@@ -54,7 +54,7 @@ module.exports = {
                 for(let i = 0; i < trackData.length; i++) {
                     queueEmbed.addFields({ name: `🤠 Song #${i + 1}`, value: `${trackData[i].title} by ${trackData[i].author} (${trackData[i].duration})`})
                 }
-                interaction.editReply('Tracks swapped! New queue:\n');
+                await interaction.editReply('Tracks swapped! New queue:\n');
                 return interaction.followUp({ embeds: [queueEmbed] });
             } else {
                 return interaction.followUp('Please provide two valid queue numbers.')
