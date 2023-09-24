@@ -41,7 +41,7 @@ module.exports = {
                     for(let i = 0; i < trackData.length; i++) {
                         queueEmbed.addFields({ name: `🤠 Song #${i + 1}`, value: `${trackData[i].title} by ${trackData[i].author} (${trackData[i].duration})`})
                     }
-                    interaction.editReply('Track removed! New queue:\n');
+                   await interaction.editReply('Track removed! New queue:\n');
                     return interaction.followUp({ embeds: [queueEmbed] });
                 }
             } else {
