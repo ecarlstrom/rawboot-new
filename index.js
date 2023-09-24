@@ -38,7 +38,7 @@ for(const file of commandFiles) {
         client.commands.set(command.data.name, command);
         console.log(`set command '${command.data.name}'`);
     } else {
-        console.log(`could not add ${command.data.name}`, console.error);
+        console.log(`could not add ${command}`, console.error);
     }
 }
 

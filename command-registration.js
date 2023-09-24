@@ -19,7 +19,7 @@ for(const file of commandFiles) {
     if('data' in command && 'execute' in command) {
         commands.push(command.data.toJSON());
     } else {
-        console.log(`Failed to deply command ${filePath}`);
+        console.log(`Failed to deploy command ${file}`);
     }
 }
 
