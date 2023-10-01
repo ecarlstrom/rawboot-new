@@ -12,7 +12,7 @@ module.exports = {
     async execute(interaction) {
         var input = interaction.options._hoistedOptions[0].value;
         if(!input) {
-            interaction.reply("PANTS");
+            interaction.reply("No input provided.");
         }
 
         const ynPollEmbed = new EmbedBuilder()
