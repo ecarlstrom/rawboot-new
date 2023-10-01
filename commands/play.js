@@ -30,7 +30,8 @@ module.exports = {
             });
             await interaction.followUp(`**${track.title}** by ${track.author} added to queue!`);
         } catch (e) {
-            return interaction.followUp(`UH OH! ${e.stack}`);
+            console.log(e.stack);
+            return interaction.followUp(`An error was encountered. This can sometimes happen with YouTube videos for now until a YouTube-specific command is added. You can try playing the video again.`);
         }
     }
 }

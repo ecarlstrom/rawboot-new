@@ -41,7 +41,8 @@ module.exports = {
             guildQueue.setVolume(parseInt(input, 10));
             return interaction.followUp(`Player volume set from ${currentVolume}% to ${input}%.`);
         } catch (e) {
-            return interaction.followUp(`UH OH! ${e.stack}`);
+            console.log(e.stack);
+            return interaction.followUp(`An error was encountered.`);
         }
     }
 }

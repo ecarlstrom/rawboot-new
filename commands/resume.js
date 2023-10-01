@@ -29,7 +29,8 @@ module.exports = {
                 return interaction.followUp(`Playback is not paused, you silly <:gooseblush:901957268692672582>`)
             }
         } catch (e) {
-            return interaction.followUp(`UH OH! ${e.stack}`);
+            console.log(e.stack);
+            return interaction.followUp(`An error was encountered.`);
         }
     }
 }

@@ -24,7 +24,8 @@ module.exports = {
             guildQueue.skip();
             return interaction.followUp(`${currentData.title} by ${currentData.author} has been skipped. Please blame 👉 ${interaction.member.nickname} 👈 for any inconvenience.`);
         } catch (e) {
-            return interaction.followUp(`UH OH! ${e.stack}`);
+            console.log(e.stack);
+            return interaction.followUp(`An error was encountered.`);
         }
     }
 }

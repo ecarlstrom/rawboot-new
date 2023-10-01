@@ -26,7 +26,8 @@ module.exports = {
             guildQueue.stop(true);
             return interaction.followUp(`Queue has been stopped and cleared. Please blame 👉 ${interaction.member.nickname} 👈 for any inconvenience.`);
         } catch (e) {
-            return interaction.followUp(`UH OH! ${e.stack}`);
+            console.log(e.stack);
+            return interaction.followUp(`An error was encountered.`);
         }
     }
 }
