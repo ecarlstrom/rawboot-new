@@ -1,6 +1,7 @@
 //////////basic discord.js etc. dependencies and bot setup//////////
 const  { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { GuildQueuePlayerNode, Player, useMainPlayer, useQueue } = require('discord-player');
+const { YoutubeiExtractor } = require('discord-player-youtubei');
 const { Discord, EmbedBuilder } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -94,7 +95,7 @@ client.on('messageCreate', async message => {
 
 //////////music player instance//////////
 const player = new Player(client, { quality: 'highestaudio '});
-player.extractors.loadDefault((ext) => ext);
+player.extractors.register(YoutubeiExtractor, {});
 
 player.events.on('playerStart', (queue, track) => {
     const songEmbed = new EmbedBuilder()

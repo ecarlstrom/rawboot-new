@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { GuildQueuePlayerNode, useMainPlayer, useQueue } = require('discord-player');
+const { useMainPlayer, useQueue } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,7 +14,7 @@ module.exports = {
         const player = useMainPlayer();
         const channel = interaction.member.voice.channel;
         const queue = useQueue(guild.id);
-        const guildQueue = new GuildQueuePlayerNode(queue);
+        // const guildQueue = new GuildQueuePlayerNode(queue);
 
         if (!channel) {
             return interaction.reply('HEY TOP! STILL! JOIN A VOICE CHANNEL!');
